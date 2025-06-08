@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Inventory System</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
   <style>
-    /* Custom font stack for elegant typography */
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap');
-
     body {
       font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }

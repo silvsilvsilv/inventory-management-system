@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Users - InventorySys</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         body {
             font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -68,7 +69,6 @@
                         <th class="px-4 py-2 text-left">Name</th>
                         <th class="px-4 py-2 text-left">Email</th>
                         <th class="px-4 py-2 text-left">Password</th>
-                        <th class="px-4 py-2 text-left">Remember Token</th>
                         <th class="px-4 py-2 text-left">Created At</th>
                         <th class="px-4 py-2 text-left">Updated At</th>
                         <th class="px-4 py-2 text-left">Role</th>
@@ -81,7 +81,6 @@
                         <td class="px-4 py-2">John Doe</td>
                         <td class="px-4 py-2">john.doe@example.com</td>
                         <td class="px-4 py-2">********</td>
-                        <td class="px-4 py-2">abc123token</td>
                         <td class="px-4 py-2">2024-01-01</td>
                         <td class="px-4 py-2">2024-01-15</td>
                         <td class="px-4 py-2">Admin</td>
