@@ -14,29 +14,7 @@
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
 
-    <!-- Header -->
-    <header class="sticky top-0 z-50 bg-white shadow-md">
-        <nav class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-            <a href="/users" class="text-2xl font-bold text-black-600">Admin</a>
-            <div class="md:hidden">
-                <button id="mobile-menu-btn" class="text-gray-600 focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-            </div>
-            <ul class="hidden md:flex space-x-10 font-medium text-gray-600">
-                <li><a href="/product" class="hover:text-blue-600 transition-colors duration-300">Manage Products</a></li>
-                <li><a href="/categories" class="hover:text-blue-600 transition-colors duration-300">Categories</a></li>
-                <li><a href="/sales" class="hover:text-blue-600 transition-colors duration-300">Sales</a></li>
-                <li><a href="/users" class="hover:text-blue-600 transition-colors duration-300">Users</a></li>
-                <li><a href="/audit-logs" class="hover:text-blue-600 transition-colors duration-300">Audit Logs</a></li>
-            </ul>
-            <button class="hidden md:inline-block bg-gray-900 text-white py-2 px-6 rounded-lg font-semibold hover:bg-gray-800 transition duration-300">
-                Sign Out
-            </button>
-        </nav>
-    </header>
+    @include('partials.header');
 
     <!-- Main Content -->
     <main class="flex-grow max-w-6xl mx-auto px-6 py-20">

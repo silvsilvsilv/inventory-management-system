@@ -6,44 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Manager Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
-   @vite(['resources/css/app.css', 'resources/js/app.js'])
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans">
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+  }
+</style>
+<body class="bg-gray-100 text-gray-800">
 
   <!-- Layout Wrapper -->
   <div class="flex min-h-screen flex-col">
 
-   
-<!-- Header -->
-  <header class="sticky top-0 z-50 bg-white shadow-sm backdrop-blur-sm backdrop-saturate-150">
-    <nav class="max-w-[1200px] mx-auto flex items-center justify-between px-6 py-4">
-      <a href="#" class="text-2xl font-bold text-black-900 select-none">Manager</a>
-      <ul class="hidden md:flex space-x-10 font-medium text-gray-600">
-                <li><a href="" class="hover:text-blue-600 transition-colors duration-300">Dashboard</a></li>
-                <li><a href="#" onclick="openModal('addModal')" class="hover:text-blue-600 transition-colors duration-300">Add Product</a></li>
-                <li><a href="" class="hover:text-blue-600 transition-colors duration-300">Inventory</a></li>
-                <li><a href="" class="hover:text-blue-600 transition-colors duration-300">Sales</a></li>
-               
-      </ul>
-      <button class="hidden md:inline-block bg-gray-900 text-white py-2 px-6 rounded-lg font-semibold hover:bg-gray-800 transition-smooth focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
-        Sign Out
-      </button>
-      <button id="mobile-menu-btn" aria-label="Open menu" class="md:hidden focus:outline-none focus:ring-2 focus:ring-gray-900 rounded">
-        <svg class="w-7 h-7 text-gray-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </button>
-    </nav>
-    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md border-t border-gray-200">
-      <nav class="flex flex-col px-6 py-4 space-y-4 font-semibold text-gray-700">
-        <a href="/products" class="hover:text-blue-600 transition-colors duration-300">Manage Products</a>
-        <a href="/categories" class="hover:text-blue-600">Categories</a></li>
-        <a href="/sales" class="hover:text-blue-600 transition-colors duration-300">Sales</a>
-        <a href="/users" class="hover:text-blue-600 transition-colors duration-300">Users</a>
-        <button class="bg-gray-900 text-white py-2 rounded-lg hover:bg-gray-800 transition-smooth">Sign Out</button>
-      </nav>
-    </div>
-  </header>
+  @include('partials.header');
+
 
       <!-- Main Content -->
       <main class="flex-1 p-8">

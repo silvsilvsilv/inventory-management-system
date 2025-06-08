@@ -1,32 +1,44 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Middleware\AuthUser;
+use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/admin', 'admin.admindash');
-Route::view('/product', 'admin.product');
-Route::view('/categories', 'admin.categories');
-Route::view('/users', 'admin.users');
-Route::view('/audit-logs', 'admin.audit_logs');
+// -----VIEWS-----
 
-Route::view('/', 'admin.admindash');
-Route::view('/admin', 'admindash');
-Route::view('/product', 'product');
-Route::view('/categories', 'categories');
-Route::view('/users', 'users');
-Route::view('/audit-logs', 'audit_logs');
+// Admin routes
+Route::prefix('admin')->middleware(RedirectIfAuthenticated::class)->group(function () {
+    Route::view('/', 'admin.admindash')->name('admin.dashboard');
+    Route::view('/product', 'admin.product')->name('admin.product');
+    Route::view('/categories', 'admin.categories')->name('admin.categories');
+    Route::view('/sales', 'admin.sales')->name('admin.sales');
+    Route::view('/users', 'admin.users')->name('admin.users');
+    Route::view('/audit-logs', 'admin.audit_logs')->name('admin.audit_logs');
+});
 
-Route::get('/manager/dashboard', function () {
-    return view('managerdash');
-})->name('manager.dashboard');
+// Manager routes
+Route::prefix('manager')->middleware(RedirectIfAuthenticated::class)->group(function () {
+    Route::view('/', 'managerdash')->name('manager.dashboard');
+    Route::view('/product', 'manager.product')->name('manager.product');
+    Route::view('/categories', 'manager.categories')->name('manager.categories');
+    Route::view('/users', 'manager.users')->name('manager.users');
+    Route::view('/audit-logs', 'manager.audit_logs')->name('manager.audit_logs');
+});
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
+// Public routes
+Route::middleware(AuthUser::class)->group(function (){
+    Route::view('/login', 'login')->name('login'); 
+    Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 
-Route::get('/forgot-password', function () {
-    return 'Password reset page (not implemented yet)';
-})->name('password.request');
+    Route::view('/register', 'register')->name('register');
+    Route::post('/register', [LoginController::class, 'register'])->name('register.submit');
+    
+    Route::get('/forgot-password', function () {
+        return 'Password reset page (not implemented yet)';
+    })->name('password.request');
+});
 
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
+
+
+Route::post('/logout', [LoginController::class, 'logoutUser'])->name('logout');

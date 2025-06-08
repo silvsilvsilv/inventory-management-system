@@ -16,22 +16,7 @@
 </head>
 <body class="flex flex-col min-h-screen">
 
-    <!-- Header -->
-    <header class="sticky top-0 z-50 bg-white shadow-sm">
-        <nav class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-            <a href="/audit-logs" class="text-2xl font-bold text-black-900">Admin</a>
-            <ul class="hidden md:flex space-x-10 font-medium text-gray-600">
-                <li><a href="/product" class="hover:text-blue-600 transition-colors duration-300">Manage Products</a></li>
-                <li><a href="/categories" class="hover:text-blue-600 transition-colors duration-300">Categories</a></li>
-                <li><a href="/sales" class="hover:text-blue-600 transition-colors duration-300">Sales</a></li>
-                <li><a href="/users" class="hover:text-blue-600 transition-colors duration-300">Users</a></li>
-                <li><a href="/audit-logs" class="hover:text-blue-600 transition-colors duration-300">Audit Logs</a></li>
-            </ul>
-            <button class="hidden md:inline-block bg-gray-900 text-white py-2 px-6 rounded-lg font-semibold hover:bg-gray-800 transition duration-300">
-                Sign Out
-            </button>
-        </nav>
-    </header>
+    @include('partials.header');
 
     <!-- Main Content -->
     <main class="flex-grow max-w-6xl mx-auto px-6 py-20">
