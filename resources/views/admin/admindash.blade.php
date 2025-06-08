@@ -6,8 +6,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   <style>
-    /* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap'); */
-
     body {
       font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: #ffffff;
@@ -168,5 +166,3 @@
 
 </body>
 </html>
-
-```

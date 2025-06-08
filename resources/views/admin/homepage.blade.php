@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Inventory System</title>
+  <title>SmartStock</title>
   <script src="https://cdn.tailwindcss.com"></script>
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   <style>
@@ -19,10 +19,9 @@
     class="sticky top-0 z-50 bg-white shadow-sm backdrop-blur-sm backdrop-saturate-150"
     >
     <nav class="max-w-[1200px] mx-auto flex items-center justify-between px-6 py-4">
-      <a href="#" class="text-2xl font-bold text-gray-900 select-none">InventorySys</a>
+      <a href="#" class="text-2xl font-bold text-gray-900 select-none">SmartStock</a>
       <ul class="hidden md:flex space-x-8 text-gray-600 font-medium">
         <li><a href="#features" class="hover:text-gray-900 transition-colors duration-300">Features</a></li>
-        <li><a href="#pricing" class="hover:text-gray-900 transition-colors duration-300">Pricing</a></li>
         <li><a href="#contact" class="hover:text-gray-900 transition-colors duration-300">Contact</a></li>
       </ul>
       <a href="#get-started" class="hidden md:inline-block bg-gray-900 text-white py-2 px-5 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">Get Started</a>
@@ -117,7 +116,7 @@
   <!-- Footer -->
   <footer id="contact" class="bg-white border-t border-gray-200 py-10 mt-20">
     <div class="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-gray-600 text-sm font-medium">
-      <p class="mb-4 md:mb-0">&copy; 2025 InventorySys. All rights reserved.</p>
+      <p class="mb-4 md:mb-0">&copy; 2025 SmartStock. All rights reserved.</p>
       <nav class="space-x-6">
         <a href="#" class="hover:text-gray-900 transition-colors duration-300">Privacy Policy</a>
         <a href="#" class="hover:text-gray-900 transition-colors duration-300">Terms of Service</a>
