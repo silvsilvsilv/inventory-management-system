@@ -8,6 +8,21 @@ use App\Models\User;
 
 class LoginController extends Controller
 {
+   public function store(Request $request)
+        {
+            $credentials = $request->only('email', 'password');
+
+            if (Auth::attempt($credentials, $request->filled('remember'))) {
+                $request->session()->regenerate();
+
+                return redirect()->intended('/dashboard')->with('status', 'logged_in');
+            }
+
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ])->onlyInput('email');
+        }
+  
     public function login(Request $request)
     {
         // Validate the request, authenticate the user, etc.
@@ -70,4 +85,5 @@ class LoginController extends Controller
 
         return redirect()->route('login');
     }
+
 }
