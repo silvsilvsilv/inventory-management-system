@@ -23,7 +23,8 @@
 
         <h2 class="text-xl font-semibold text-center text-blue-700 mb-6">Create a New Account</h2>
 
-        <form id="registerForm" method="POST" action="{{ route('register') }}">
+        <form id="registerForm" method="POST" action="{{ route('register.submit') }}">
+
             @csrf
 
             <div class="mb-4">

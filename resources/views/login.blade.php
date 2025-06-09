@@ -35,7 +35,8 @@
 
         <h2 class="text-xl font-semibold text-center text-blue-700 mb-6">Login to Your Account</h2>
 
-        <form method="POST" action="{{ route('login') }}" id="loginForm">
+        <form method="POST" action="{{ route('login.submit') }}" id="loginForm">
+
             @csrf
 
             <div class="mb-4">
