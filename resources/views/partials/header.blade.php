@@ -3,11 +3,11 @@
     <nav class="max-w-[1200px] mx-auto flex items-center justify-between px-6 py-4">
       <a href="#" class="text-2xl font-bold text-black-900 select-none">Smart Stock Admin</a>
       <ul class="hidden md:flex space-x-10 font-medium text-gray-600">
-                <li><a href="{{route('admin.products')}}" class="hover:text-blue-600 transition-colors duration-300">Manage Products</a></li>
-                <li><a href="{{route('admin.categories')}}" class="hover:text-blue-600 transition-colors duration-300">Categories</a></li>
-                <li><a href="{{route('admin.sales')}}" class="hover:text-blue-600 transition-colors duration-300">Sales</a></li>
-                <li><a href="{{route('admin.users')}}" class="hover:text-blue-600 transition-colors duration-300">Users</a></li>
-                <li><a href="{{route('admin.audit_logs')}}" class="hover:text-blue-600 transition-colors duration-300">Audit Logs</a></li>
+        <li><a href="{{route('admin.products')}}" class="hover:text-blue-600 transition-colors duration-300">Products</a></li>
+        <li><a href="{{route('admin.categories')}}" class="hover:text-blue-600 transition-colors duration-300">Categories</a></li>
+        <li><a href="{{route('admin.sales')}}" class="hover:text-blue-600 transition-colors duration-300">Sales</a></li>
+        <li><a href="{{route('admin.users')}}" class="hover:text-blue-600 transition-colors duration-300">Users</a></li>
+        <li><a href="{{route('admin.audit_logs')}}" class="hover:text-blue-600 transition-colors duration-300">Audit Logs</a></li>
       </ul>
 
       <form method="POST" action="{{ route('logout') }}" class="hidden md:inline-block">

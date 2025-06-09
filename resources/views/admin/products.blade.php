@@ -73,7 +73,7 @@
                             <td class="px-4 py-2">{{ $product->category->name ?? 'N/A' }}</td>
                             <td class="px-4 py-2">${{ number_format($product->price, 2) }}</td>
                             <td class="px-4 py-2">{{ $product->stock }}</td>
-                            <td class="px-4 py-2">{{ $product->updated_at->format('F d, Y') }}</td>
+                            <td class="px-4 py-2">{{ $product->updated_at->format('F d, Y h:i a') }}</td>
                             <td class="px-4 py-2 flex space-x-2">
                                 <button 
                                     onclick="openEditModal(
@@ -98,14 +98,7 @@
 
         <!-- Pagination -->
         <div class="mt-4">
-            <nav>
-                <ul class="flex justify-center space-x-2">
-                    <li><a href="#" class="px-4 py-2 border border-gray-300 rounded">1</a></li>
-                    <li><a href="#" class="px-4 py-2 border border-gray-300 rounded">2</a></li>
-                    <li><a href="#" class="px-4 py-2 border border-gray-300 rounded">3</a></li>
-                    <li><a href="#" class="px-4 py-2 border border-gray-300 rounded">Next</a></li>
-                </ul>
-            </nav>
+            {{ $products->links() }}
         </div>
     </main>
 

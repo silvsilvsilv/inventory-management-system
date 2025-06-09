@@ -72,8 +72,8 @@
                             <td class="px-4 py-2">{{ $category->id }}</td>
                             <td class="px-4 py-2">{{ $category->name }}</td>
                             <td class="px-4 py-2">{{ $category->description }}</td>
-                            <td class="px-4 py-2">{{ $category->created_at->format('F d, Y') }}</td>
-                            <td class="px-4 py-2">{{ $category->updated_at->format('F d, Y') }}</td>
+                            <td class="px-4 py-2">{{ $category->created_at->format('F d, Y h:i a') }}</td>
+                            <td class="px-4 py-2">{{ $category->updated_at->format('F d, Y h:i a') }}</td>
                             <td class="px-4 py-2">
                                 <button 
                                     onclick="openEditModal('{{addslashes($category->id) }}','{{ addslashes($category->name) }}', '{{ addslashes($category->description) }}')" 

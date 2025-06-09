@@ -4,6 +4,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\SalesController;
 use App\Http\Middleware\AuthUser;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Support\Facades\Route;
@@ -12,11 +13,6 @@ use Illuminate\Support\Facades\Route;
 // Admin routes
 Route::prefix('admin')->middleware(RedirectIfAuthenticated::class)->group(function () {
     Route::view('/', 'admin.admindash')->name('admin.dashboard');
-    // Route::view('/product', 'admin.product')->name('admin.product');
-    // Route::view('/categories', 'admin.categories')->name('admin.categories');
-    Route::view('/sales', 'admin.sales')->name('admin.sales');
-    // Route::view('/users', 'admin.users')->name('admin.users');
-    Route::view('/audit-logs', 'admin.audit_logs')->name('admin.audit_logs');
 
     Route::get('/users', [UserController::class, 'getAllUsers'])->name('admin.users');
     Route::post('/users', [UserController::class, 'createUser'])->name('admin.create_user');
@@ -32,6 +28,8 @@ Route::prefix('admin')->middleware(RedirectIfAuthenticated::class)->group(functi
     Route::post('/products', [ProductsController::class, 'createProduct'])->name('admin.create_product');
     Route::put('/products', [ProductsController::class, 'editProduct'])->name('admin.edit_product');
     Route::delete('/products', [ProductsController::class, 'deleteProduct'])->name('admin.delete_product');
+
+    Route::get('/sales', [SalesController::class, 'getAllSales'])->name('admin.sales');
 });
 
 
