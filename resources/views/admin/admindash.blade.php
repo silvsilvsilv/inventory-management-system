@@ -51,7 +51,7 @@
 </head>
 <body class="flex flex-col min-h-screen">
 
-  @include('partials.header');
+  @include('partials.header')
 
   <!-- Hero Section -->
   <section id="dashboard" class="pt-24 pb-20 max-w-[1200px] mx-auto px-6 text-center">

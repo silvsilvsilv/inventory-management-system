@@ -15,23 +15,23 @@ class ProductsSeeder extends Seeder
     {
         Products::factory()->create([
             'name' => 'Smartphone',
-            'description' => 'Latest model smartphone with advanced features',
             'category_id' => 1, // Assuming category_id 1 is Electronics
             'price' => 699.99,
+            'stock' => 50,
         ]);
 
         Products::factory()->create([
             'name' => 'Organic Apples',
-            'description' => 'Fresh organic apples from local farms',
             'category_id' => 2, // Assuming category_id 2 is Produce
             'price' => 2.99,
+            'stock' => 50,
         ]);
 
         Products::factory()->create([
             'name' => 'Denim Jacket',
-            'description' => 'Stylish denim jacket for all seasons',
             'category_id' => 3, // Assuming category_id 3 is Clothing
             'price' => 49.99,
+            'stock' => 50,
         ]);
     }
 }

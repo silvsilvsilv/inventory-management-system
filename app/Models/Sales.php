@@ -25,10 +25,12 @@ class Sales extends Model
     }
 
     /**
-     * Get the sales items for the sale.
-     */
-    public function salesItems()
+     * 
+     * Get the user that is associated with the sale.
+     */ 
+    public function user()
     {
-        return $this->hasMany(SalesItem::class, 'sale_id');
-    }
+        return $this->belongsTo(User::class, 'created_by');
+    } 
+    
 }

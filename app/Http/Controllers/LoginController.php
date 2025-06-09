@@ -8,21 +8,6 @@ use App\Models\User;
 
 class LoginController extends Controller
 {
-   public function store(Request $request)
-        {
-            $credentials = $request->only('email', 'password');
-
-            if (Auth::attempt($credentials, $request->filled('remember'))) {
-                $request->session()->regenerate();
-
-                return redirect()->intended('/dashboard')->with('status', 'logged_in');
-            }
-
-            return back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-            ])->onlyInput('email');
-        }
-  
     public function login(Request $request)
     {
         // Validate the request, authenticate the user, etc.
@@ -34,20 +19,19 @@ class LoginController extends Controller
         // Redirect based on user role
         if (Auth::attempt($request->only('email', 'password'))) {
             $user = Auth::user();
+            $request->session()->put('status', 'logged_in');
 
             if ($user->role === 'admin') {
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('admin.dashboard')->with('status', 'logged_in');
             } 
             elseif ($user->role === 'staff') {
-                return redirect()->route('manager.dashboard');
+                return redirect()->route('manager.dashboard')->with('status', 'logged_in');
             } 
         }
 
-        return response()->json([
-            'message' => 'Incorrect email or password',
-            ], 
-            401
-        );
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 
     public function logoutUser(Request $request)
@@ -60,8 +44,6 @@ class LoginController extends Controller
 
     public function register(Request $request)
     {
-        // Handle registration logic here
-        // Validate the request, create a new user, etc.
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',

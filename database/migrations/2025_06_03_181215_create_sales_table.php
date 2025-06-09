@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->string('customer_name');
-            $table->decimal('total_amount', 10, 2);
             $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
+            $table->integer('quantity')->default(1);
+            $table->decimal('price', 10, 2);
+            $table->decimal('total_amount', 10, 2);
             $table->timestamps();
         });
     }

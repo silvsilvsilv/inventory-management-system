@@ -19,7 +19,7 @@ class RedirectIfAuthenticated
         if(!Auth::check()) {
             return redirect()->route('login');
         }
-        
+
         return $next($request);
     }
 }
