@@ -7,7 +7,6 @@
         <li><a href="{{route('admin.categories')}}" class="hover:text-blue-600 transition-colors duration-300">Categories</a></li>
         <li><a href="{{route('admin.sales')}}" class="hover:text-blue-600 transition-colors duration-300">Sales</a></li>
         <li><a href="{{route('admin.users')}}" class="hover:text-blue-600 transition-colors duration-300">Users</a></li>
-        <li><a href="{{route('admin.audit_logs')}}" class="hover:text-blue-600 transition-colors duration-300">Audit Logs</a></li>
       </ul>
 
       <form method="POST" action="{{ route('logout') }}" class="hidden md:inline-block">
