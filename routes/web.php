@@ -7,11 +7,12 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SalesController;
 use App\Http\Middleware\AuthUser;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 
 
 // Admin routes
-Route::prefix('admin')->middleware(RedirectIfAuthenticated::class)->group(function () {
+Route::prefix('admin')->middleware(IsAdmin::class)->group(function () {
     Route::view('/', 'admin.admindash')->name('admin.dashboard');
 
     Route::get('/users', [UserController::class, 'getAllUsers'])->name('admin.users');
@@ -43,6 +44,7 @@ Route::prefix('manager')->middleware(RedirectIfAuthenticated::class)->group(func
 
 // Public routes
 Route::middleware(AuthUser::class)->group(function (){
+    Route::view('/','login');
     Route::view('/login', 'login')->name('login'); 
     Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 

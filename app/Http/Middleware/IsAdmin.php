@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class RedirectIfAuthenticated
+class IsAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,9 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->role === 'manager') {
+        if (Auth::user()->role === 'admin') {
             return $next($request);
         }
-            return redirect()->route('login');
+        return redirect('/login'); // or abort(403)
     }
 }

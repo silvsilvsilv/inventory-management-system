@@ -16,8 +16,11 @@ class AuthUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check()) {
+        if(Auth::check() && Auth::user()->role === 'admin') {
            return redirect()->route('admin.dashboard'); // Redirect authenticated users to the admin dashboard
+        }
+        else if(Auth::check() && Auth::user()->role === 'manager') {
+           return redirect()->route('manager.dashboard'); // Redirect authenticated users to the manager dashboard
         }
         return $next($request);
     }
