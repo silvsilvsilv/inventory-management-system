@@ -13,20 +13,12 @@
     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
-    @if($errors->any())
-                <div class="mb-4">
-                    <ul class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-                        @foreach($errors->all() as $error)
-                            <li class="list-disc ml-5">{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+    @include('partials.errors')
     @include('partials.header')
 
     <!-- Main Content -->
     <main class="flex-grow max-w-6xl mx-auto px-6 py-20">
-        <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">Managed Users</h1>
+        <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">User Management</h1>
 
         <!-- Search Bar -->
         <form method="GET" action="{{ route('admin.users') }}" class="mb-4 flex items-center">
@@ -51,7 +43,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
                 </svg>
             </button>
-            <button type="button" class="ml-2 bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 whitespace-nowrap" id="createUser">
+            <button type="button" class="ml-2 bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700 whitespace-nowrap" id="createUser">
                 Create User
             </button>
         </form>
@@ -109,7 +101,7 @@
                 </select>
                 <div class="flex justify-end space-x-2">
                     <button type="button" onclick="closeModal('createUserModal')" class="px-4 py-2 bg-gray-300 rounded">Cancel</button>
-                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Create</button>
+                    <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Create</button>
                 </div>
             </form>
         </div>
@@ -132,7 +124,7 @@
                 </select>
                 <div class="flex justify-end space-x-2">
                     <button type="button" onclick="closeModal('editUser Modal')" class="px-4 py-2 bg-gray-300 rounded">Cancel</button>
-                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Save</button>
+                    <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Save</button>
                 </div>
             </form>
         </div>
@@ -184,7 +176,7 @@
 
         function openDeleteModal(id,userName) {
             document.getElementById('deleteUserId').value = id;
-            document.getElementById('deleteUser Message').textContent = `Are you sure you want to delete ${userName}?`;
+            document.getElementById('deleteUser Message').innerHTML = `Are you sure you want to delete <strong>${userName}</strong>?`;
             openModal('deleteUser Modal');
         }
 
@@ -195,7 +187,7 @@
 
         document.getElementById('confirmDeleteButton').addEventListener('click', function() {
             // Perform the delete action here
-            console.log(`User  ${userToDelete} deleted`); // Replace with actual delete logic
+            console.log(`User  ${userToDelete} deleted`);
             closeModal('deleteUser Modal');
         });
     </script>

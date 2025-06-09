@@ -44,8 +44,6 @@ class LoginController extends Controller
 
     public function register(Request $request)
     {
-        // Handle registration logic here
-        // Validate the request, create a new user, etc.
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
