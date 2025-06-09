@@ -16,7 +16,7 @@
 </head>
 <body class="flex flex-col min-h-screen">
 
-    @include('partials.header');
+    @include('partials.header')
 
     <!-- Main Content -->
     <main class="flex-grow max-w-6xl mx-auto px-6 py-20">

@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sales Report</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -14,7 +13,22 @@
 </head>
 <body class="flex flex-col min-h-screen bg-gray-50">
 
-    @include('partials.header')
+    <!-- Header Section -->
+    <header class="bg-white shadow-md">
+        <nav class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+            <a href="#" class="text-2xl font-bold text-gray-800">Admin</a>
+            <ul class="hidden md:flex space-x-10 font-medium text-gray-600">
+                <li><a href="/products" class="hover:text-blue-600 transition-colors duration-300">Manage Products</a></li>
+                <li><a href="/categories" class="hover:text-blue-600 transition-colors duration-300">Categories</a></li>
+                <li><a href="/sales" class="hover:text-blue-600 transition-colors duration-300">Sales</a></li>
+                <li><a href="/users" class="hover:text-blue-600 transition-colors duration-300">Users</a></li>
+                <li><a href="/audit-logs" class="hover:text-blue-600 transition-colors duration-300">Audit Logs</a></li>
+            </ul>
+            <button class="hidden md:inline-block bg-gray-900 text-white py-2 px-6 rounded-lg font-semibold hover:bg-gray-800 transition duration-300">
+                Sign Out
+            </button>
+        </nav>
+    </header>
 
     <!-- Main Content -->
    <main class="flex-grow max-w-6xl mx-auto px-6 py-20">
@@ -67,5 +81,18 @@
             </nav>
         </div>
     </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-100 border-t border-gray-200 py-12">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm font-medium space-y-4 md:space-y-0">
+            <p>&copy; 2025 InventorySys. All rights reserved.</p>
+            <nav class="space-x-6">
+                <a href="#" class="hover:text-blue-600 transition-colors duration-300">Privacy Policy</a>
+                <a href="#" class="hover:text-blue-600 transition-colors duration-300">Terms of Service</a>
+                <a href="#" class="hover:text-blue-600 transition-colors duration-300">Contact</a>
+            </nav>
+        </div>
+    </footer>
+
 </body>
 </html>
