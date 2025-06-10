@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\StaffDashboardController;
 use App\Http\Middleware\AuthUser;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\IsAdmin;
@@ -30,16 +31,23 @@ Route::prefix('admin')->middleware(IsAdmin::class)->group(function () {
     Route::put('/products', [ProductsController::class, 'editProduct'])->name('admin.edit_product');
     Route::delete('/products', [ProductsController::class, 'deleteProduct'])->name('admin.delete_product');
 
-    Route::get('/sales', [SalesController::class, 'getAllSales'])->name('admin.sales');
+    Route::get('/sales', [SalesController::class, 'getAllSalesAdmin'])->name('admin.sales');
 });
 
 
 // Manager routes
 Route::prefix('manager')->middleware(RedirectIfAuthenticated::class)->group(function () {
     Route::view('/', 'manager.managerdash')->name('manager.dashboard');
-    Route::view('/log', 'manager.actlogdash')->name('manager.log');
-    
-    Route::view('/sales', 'manager.sales')->name('manager.sales');
+    // Route::view('/staff', 'manager.staffdash')->name('manager.staff');
+
+
+    Route::get('/', [StaffDashboardController::class,'managerDashboard'])->name('manager.dashboard');
+    Route::post('/', [ProductsController::class, 'createProduct'])->name('manager.add_product');
+
+    Route::get('/staff', [StaffDashboardController::class, 'dashboardFilter'])->name('manager.staff');
+    Route::put('/staff',[StaffDashboardController::class, 'updateQuantity'])->name('manager.update_quantity');
+
+    Route::get('/sales', [SalesController::class, 'getAllSalesManager'])->name('manager.sales');
 });
 
 // Public routes
@@ -55,7 +63,5 @@ Route::middleware(AuthUser::class)->group(function (){
         return 'Password reset page (not implemented yet)';
     })->name('password.request');
 });
-
-
 
 Route::post('/logout', [LoginController::class, 'logoutUser'])->name('logout');

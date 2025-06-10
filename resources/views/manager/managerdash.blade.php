@@ -17,9 +17,8 @@
 
   <!-- Layout Wrapper -->
   <div class="flex min-h-screen flex-col">
-
+  @include('partials.errors')
   @include('partials.manager_header')
-  @include('partials.toast')
 
       <!-- Main Content -->
       <main class="flex-1 p-8">
@@ -42,16 +41,28 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b hover:bg-gray-50">
-                  <td class="py-2 px-4">Apples</td>
-                  <td class="py-2 px-4">Fruits</td>
-                  <td class="py-2 px-4">24</td>
-                  <td class="py-2 px-4">$1.50</td>
-                  <td class="py-2 px-4 text-green-600 font-semibold">In Stock</td>
-                  <td class="py-2 px-4">
-                    <button onclick="openModal('deleteModal')" class="text-red-600 hover:underline">Delete</button>
-                  </td>
-                </tr>
+                @forelse ($products as $product )
+                  <tr class="border-b hover:bg-gray-50">
+                    <td class="py-2 px-4">{{ $product->name }}</td>
+                    <td class="py-2 px-4">{{ $product->category->name }}</td>
+                    <td class="py-2 px-4">{{ $product->stock }}</td>
+                    <td class="py-2 px-4">${{ $product->price }}</td>
+                    @if ($product->stock > 0)
+                      <td class="py-2 px-4 text-green-600 font-semibold">In Stock</td>
+                    @else
+                      <td class="py-2 px-4 text-red-600 font-semibold">Out of Stock</td>
+                    @endif
+                    <td class="py-2 px-4">
+                      <button onclick="openModal('deleteModal')" class="text-red-600 hover:underline">Delete</button>
+                    </td>
+                  </tr>
+
+                @empty
+                  <tr>
+                    <td colspan="6" class="text-center py-4 text-gray-500">No products found.</td>
+                  </tr>
+                @endforelse
+
                 <!-- More rows can be added here -->
               </tbody>
             </table>
@@ -65,12 +76,20 @@
   <div id="addModal" class="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center hidden z-50">
     <div class="bg-white p-6 rounded-lg w-full max-w-lg shadow-xl">
       <h3 class="text-xl font-semibold mb-4">Add New Product</h3>
-      <form class="grid grid-cols-1 gap-4">
-        <input type="text" placeholder="Product Name" class="border p-2 rounded" />
-        <input type="number" placeholder="Quantity" class="border p-2 rounded" />
-        <input type="text" placeholder="Category" class="border p-2 rounded" />
-        <input type="number" placeholder="Price" class="border p-2 rounded" />
-        <textarea placeholder="Description" class="border p-2 rounded"></textarea>
+      <form class="grid grid-cols-1 gap-4" action="{{ route('manager.add_product') }}" method="POST">
+        @csrf
+        @method('POST')
+        <input type="text" placeholder="Product Name" class="border p-2 rounded" name="name" />
+        <input type="number" placeholder="Quantity" class="border p-2 rounded" name="stock"/>
+        <select name="category_id" class="border p-2 rounded">
+          <option value="" disabled>All Categories</option>
+            @foreach($categories as $category)
+              <option value="{{ $category->id }}" {{ request('category') == $category->name ? 'selected' : '' }}>
+                {{ $category->name }}
+              </option>
+            @endforeach
+        </select>
+        <input type="number" placeholder="Price" class="border p-2 rounded" name="price"/>
         <div class="flex justify-end space-x-2">
           <button type="button" onclick="closeModal('addModal')" class="px-4 py-2 bg-gray-300 rounded">Cancel</button>
           <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Add</button>
