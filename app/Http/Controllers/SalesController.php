@@ -7,11 +7,17 @@ use Illuminate\Http\Request;
 
 class SalesController extends Controller
 {
-    public function getAllSales()
+    public function getAllSalesAdmin()
     {
         $sales = Sales::query()->paginate(10);
 
         return view('admin.sales', compact('sales'));
     }
     
+    public function getAllSalesManager()
+    {
+        $sales = Sales::query()->paginate(10);
+
+        return view('manager.sales', compact('sales'));
+    }
 }
