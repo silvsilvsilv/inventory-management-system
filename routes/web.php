@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\StaffDashboardController;
+use App\Http\Controllers\LogsController;
 use App\Http\Middleware\AuthUser;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\IsAdmin;
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 // Admin routes
 Route::prefix('admin')->middleware(IsAdmin::class)->group(function () {
     Route::view('/', 'admin.admindash')->name('admin.dashboard');
+
+    Route::get('/admin-logs',[LogsController::class,'getAllLogs'])->name('admin.logs');
 
     Route::get('/users', [UserController::class, 'getAllUsers'])->name('admin.users');
     Route::post('/users', [UserController::class, 'createUser'])->name('admin.create_user');
@@ -39,6 +42,16 @@ Route::prefix('admin')->middleware(IsAdmin::class)->group(function () {
 Route::prefix('manager')->middleware(RedirectIfAuthenticated::class)->group(function () {
     Route::view('/', 'manager.managerdash')->name('manager.dashboard');
     // Route::view('/staff', 'manager.staffdash')->name('manager.staff');
+
+    // Route::view('/asd','manager.logs')->name('manager.logs');
+
+    Route::get('/manager-logs',[LogsController::class,'getAllLogs'])->name('manager.logs');
+
+    Route::get('/products', [ProductsController::class, 'getAllProducts'])->name('manager.products');
+    Route::post('/products', [ProductsController::class, 'createProduct'])->name('manager.create_product');
+    Route::put('/products', [ProductsController::class, 'editProduct'])->name('manager.edit_product');
+    Route::delete('/products', [ProductsController::class, 'deleteProduct'])->name('manager.delete_product');
+
 
 
     Route::get('/', [StaffDashboardController::class,'managerDashboard'])->name('manager.dashboard');

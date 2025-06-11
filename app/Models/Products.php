@@ -15,6 +15,7 @@ class Products extends Model
         'stock',
         'price',
         'category_id',
+        'deleted_at'
     ];
 
     /**

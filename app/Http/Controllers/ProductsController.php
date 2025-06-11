@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Products;
 use App\Models\Categories;
+use App\Models\Logs;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -24,6 +26,7 @@ class ProductsController extends Controller
         $categories = Categories::all();
     
         return view('admin.products', compact('products','categories'));
+        // return response()->json(['products'=> $products,'categories'=> $categories]);
     }
 
     public function deleteProduct(Request $request)
@@ -39,7 +42,18 @@ class ProductsController extends Controller
             return redirect()->route('admin.products')->withErrors(['Product not found.']);
         }
 
-        $product->delete();
+        $product->update([
+            'deleted_at'=>Carbon::now(),
+        ]);
+
+        Logs::create([
+            'product_id'=>$id,
+            'user_id'=> Auth::user()->id,
+            'type'=>'delete',
+            'stock_added'=>0,
+            'created_at'=>Carbon::now(),
+            'updated_at'=> Carbon::now(),
+        ]);
 
         return redirect()->route('admin.products')->with('success', 'Product deleted successfully.');
     }
@@ -56,12 +70,22 @@ class ProductsController extends Controller
 
         $category_id = (int) $request->category_id;
 
-        Products::create([
+        $product = Products::create([
             'name' => $request->name,
             'stock' => $request->stock,
             'price' => $request->price,
             'category_id' => $category_id,
         ]);
+
+        Logs::create([
+            'product_id'=>$product->id,
+            'user_id'=> Auth::user()->id,
+            'stock_added'=>$request->stock,
+            'type'=>'create',
+            'created_at'=>Carbon::now(),
+            'updated_at'=> Carbon::now(),
+        ]);
+
 
         return redirect()->route('admin.products')->with('success', 'Product created successfully.');
     }
@@ -84,12 +108,23 @@ class ProductsController extends Controller
             return redirect()->route('admin.products')->withErrors(['Product not found.']);
         }
 
+        $stock_added = $request->stock - $product->stock;
+
         $product->update([
             'name' => $request->name,
             'stock' => $request->stock,
             'price' => $request->price,
             'category_id' => $category_id,
             'updated_at' => Carbon::now(),
+        ]);
+
+        Logs::create([
+            'product_id'=>$request->id,
+            'user_id'=> Auth::user()->id,
+            'stock_added'=>$stock_added,
+            'type'=>'update',
+            'created_at'=>Carbon::now(),
+            'updated_at'=> Carbon::now(),
         ]);
 
         return redirect()->route('admin.products')->with('success', 'Product updated successfully.');
