@@ -55,9 +55,17 @@ class ProductsController extends Controller
             'updated_at'=> Carbon::now(),
         ]);
 
-        return redirect()->route('admin.products')->with('success', 'Product deleted successfully.');
-    }
+        $user = Auth::user()->role;
 
+        if($user === 'admin')
+        {
+            return redirect()->route('admin.products')->with('success', 'Product deleted successfully.');
+        }
+        else
+        {
+            return redirect()->route('manager.dashboard')->with('success', 'Product deleted successfully');
+        }
+    }
     public function createProduct(Request $request)
     {   
        
@@ -87,7 +95,16 @@ class ProductsController extends Controller
         ]);
 
 
-        return redirect()->route('admin.products')->with('success', 'Product created successfully.');
+        $user = Auth::user()->role;
+
+        if($user === 'admin')
+        {
+            return redirect()->route('admin.products')->with('success', 'Product deleted successfully.');
+        }
+        else
+        {
+            return redirect()->route('manager.dashboard')->with('success', 'Product deleted successfully');
+        }    
     }
 
     public function editProduct(Request $request)

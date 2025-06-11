@@ -58,7 +58,8 @@
           <td class="py-2 px-4 text-red-600 font-semibold">Out of Stock</td>
         @endif
           <td class="py-2 px-4">
-            <button onclick="openModal('{{$product->id}}}')" class="text-red-600 hover:underline">Delete</button>
+            <button onclick="openDeleteModal('{{$product->id}}','{{addslashes($product->name)}}')"
+            class="text-red-600 hover:underline">Delete</button>
           </td>
           </tr>
         @endif
@@ -126,10 +127,10 @@
     function closeModal(id) {
       document.getElementById(id).classList.add('hidden');
     }
-    function openDeleteModal(id) {
+    function openDeleteModal(id, productName) {
       document.getElementById('deleteProductId').value = id;
-      // document.querySelector('#deleteProductModal p').innerHTML = `Are you sure you want to delete <strong>${productName}</strong>?`;
-      openModal('deleteProductModal');
+      document.querySelector('#deleteModal p').innerHTML = `Are you sure you want to delete <strong>${productName}</strong>?`;
+      openModal('deleteModal');
     }
   </script>
 
