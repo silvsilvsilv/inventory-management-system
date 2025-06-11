@@ -100,19 +100,6 @@
     </article>
   </section>
 
-   <!-- View Audit Logs Card -->
-    <article id="categories" class="card-shadow p-10 text-center hover:shadow-lg transition-smooth cursor-default bg-white">
-      <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto mb-6 h-14 w-14 text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M18 8c-1.657 0-3 1.567-3 3.5S16.343 15 18 15s3-1.567 3-3.5S19.657 8 18 8z M6 12c0 1.933 1.343 3.5 3 3.5s3-1.567 3-3.5S10.657 8.5 9 8.5 6 10.067 6 12z M9 21v-2m6 2v-2m2.121-7.879a7.979 7.979 0 01-10.243 0" />
-      </svg>
-      <h2 class="text-2xl font-semibold text-gray-900 mb-3">Categories</h2>
-      <p class="text-gray-600 leading-relaxed text-base">
-       itlog
-      </p>
-    </article>
-  </section>
-
-
   <!-- Footer -->
   <footer class="bg-gray-50 border-t border-gray-200 py-12 mt-auto">
     <div class="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm font-medium space-y-4 md:space-y-0">

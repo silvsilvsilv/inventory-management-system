@@ -9,7 +9,6 @@
 </head>
 <body class="bg-indigo-50 min-h-screen flex flex-col items-center justify-center px-4 relative">
 
-    @include('partials.toast')
     <h1 class="text-3xl font-bold text-blue-800 text-center mb-2">Smart Stock</h1>
     <h3 class="text-lg text-blue-700 text-center mb-8">"Track Smart. Stock Right."</h3>
 
