@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categories;
+use App\Models\Logs;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 class CategoriesController extends Controller
@@ -46,7 +48,7 @@ class CategoriesController extends Controller
             'updated_at' => Carbon::now(),
         ]);
 
-        return redirect()->route('admin.categories')->with('success', 'Category created successfully.');
+        return redirect()->route('admin.categories')->with('success', 'Category updated successfully.');
     }
 
     public function createCategory(Request $request)
@@ -56,33 +58,22 @@ class CategoriesController extends Controller
             'description' => 'nullable|string|max:1000',
         ]);
 
-        Categories::create([
+        $category = Categories::create([
             'name' => $request->name,
             'description' => $request->description,
         ]);
+
+        Logs::create([
+            'category_id'=>$category->id,
+            'user_id'=> Auth::user()->id,
+            'type'=>'create',
+            'created_at'=>Carbon::now(),
+            'updated_at'=> Carbon::now(),
+        ]);
+
 
         return redirect()->route('admin.categories')->with('success', 'Category created successfully.');
     }
-
-    public function updateCategory(Request $request)
-    {   
-        $request->validate([
-            'id' => 'required|integer|exists:categories,id',
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string|max:1000',
-        ]);
-
-        $id = (int) $request->id;
-        $category = Categories::findOrFail($id);
-        
-        $category->update([
-            'name' => $request->name,
-            'description' => $request->description,
-        ]);
-
-        return redirect()->route('admin.categories')->with('success', 'Category updated successfully.');
-    }
-
     public function deleteCategory(Request $request)
     {
         $request->validate([
@@ -91,7 +82,15 @@ class CategoriesController extends Controller
 
         $id = (int) $request->id;
         $category = Categories::findOrFail($id);
-        $category->delete();
+        $category->update(['deleted_at' => Carbon::now()]);
+
+        Logs::create([
+            'category_id'=>$id,
+            'user_id'=> Auth::user()->id,
+            'type'=>'delete',
+            'created_at'=>Carbon::now(),
+            'updated_at'=> Carbon::now(),
+        ]);
 
         return redirect()->route('admin.categories')->with('success', 'Category deleted successfully.');
     }

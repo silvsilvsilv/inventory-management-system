@@ -121,7 +121,7 @@ class ProductsController extends Controller
         $category_id = (int) $request->category_id;
         $product = Products::findOrFail($id);
 
-        if (!$product) {
+        if (!$product || $product->deleted_at) {
             return redirect()->route('admin.products')->withErrors(['Product not found.']);
         }
 

@@ -68,6 +68,9 @@
                 </thead>
                 <tbody>
                     @foreach($categories as $category)
+                        @if($category->deleted_at)
+                            @continue
+                        @endif
                         <tr class="border-b">
                             <td class="px-4 py-2">{{ $category->id }}</td>
                             <td class="px-4 py-2">{{ $category->name }}</td>

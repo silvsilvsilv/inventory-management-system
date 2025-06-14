@@ -65,8 +65,11 @@
                                     <td class="px-4 py-2">{{ $item->name }}</td>
                                     <td class="px-4 py-2">{{ $item->category->name }}</td>
                                     <td class="px-4 py-2">
-                                        <input type="number" value="{{ $item->stock }}"
-                                            class="w-20 px-2 py-1 border border-gray-300 rounded" name="quantity">
+                                        <input type="number" id="quantity-{{ $item->id }}" value="{{ $item->stock }}"
+                                            class="w-20 px-2 py-1 border border-gray-300 rounded" 
+                                            name="quantity" 
+                                            oninput="quantityChange(this, '{{ $item->stock }}')" 
+                                            min="{{ $item->stock }}">
                                     </td>
                                     <td class="px-4 py-2 space-x-2 text-center">
                                         <button type="submit"
@@ -83,8 +86,13 @@
                 </tbody>
             </table>
         </div>
-
     </div>
 </body>
-
+<script>
+    function quantityChange(input, minValue){
+        if (parseInt(input.value) < minValue) {
+            input.value = minValue;
+        }
+    }
+</script>
 </html>
