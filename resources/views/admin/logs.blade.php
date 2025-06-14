@@ -2,19 +2,19 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Inventory Activity Log</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
-  <style>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Inventory Activity Log</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	@vite(['resources/css/app.css', 'resources/js/app.js'])
+	<style>
     body {
-      font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
-        sans-serif;
-      background-color: #ffffff;
-      color: #000000;
+    	font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    		sans-serif;
+    	background-color: #ffffff;
+    	color: #000000;
     }
-  </style>
+	</style>
 </head>
 
 <body class="bg-gray-100 text-gray-900">
