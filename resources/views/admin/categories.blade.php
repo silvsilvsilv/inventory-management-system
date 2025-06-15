@@ -68,28 +68,27 @@
                 </thead>
                 <tbody>
                     @foreach($categories as $category)
-                        @if($category->deleted_at)
-                            @continue
+                        @if($category->deleted_at == null)
+                            <tr class="border-b">
+                                <td class="px-4 py-2">{{ $category->id }}</td>
+                                <td class="px-4 py-2">{{ $category->name }}</td>
+                                <td class="px-4 py-2">{{ $category->description }}</td>
+                                <td class="px-4 py-2">{{ $category->created_at->format('F d, Y h:i a') }}</td>
+                                <td class="px-4 py-2">{{ $category->updated_at->format('F d, Y h:i a') }}</td>
+                                <td class="px-4 py-2">
+                                    <button 
+                                        onclick="openEditModal('{{addslashes($category->id) }}','{{ addslashes($category->name) }}', '{{ addslashes($category->description) }}')" 
+                                        class="bg-blue-400 text-white px-3 py-1 rounded hover:bg-blue-500">
+                                        Edit
+                                    </button>
+                                    <button 
+                                        onclick="openDeleteModal('{{ addslashes($category->id) }}','{{ addslashes($category->name) }}')" 
+                                        class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
                         @endif
-                        <tr class="border-b">
-                            <td class="px-4 py-2">{{ $category->id }}</td>
-                            <td class="px-4 py-2">{{ $category->name }}</td>
-                            <td class="px-4 py-2">{{ $category->description }}</td>
-                            <td class="px-4 py-2">{{ $category->created_at->format('F d, Y h:i a') }}</td>
-                            <td class="px-4 py-2">{{ $category->updated_at->format('F d, Y h:i a') }}</td>
-                            <td class="px-4 py-2">
-                                <button 
-                                    onclick="openEditModal('{{addslashes($category->id) }}','{{ addslashes($category->name) }}', '{{ addslashes($category->description) }}')" 
-                                    class="bg-blue-400 text-white px-3 py-1 rounded hover:bg-blue-500">
-                                    Edit
-                                </button>
-                                <button 
-                                    onclick="openDeleteModal('{{ addslashes($category->id) }}','{{ addslashes($category->name) }}')" 
-                                    class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
                     @endforeach
                 </tbody>
             </table>

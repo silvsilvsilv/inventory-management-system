@@ -82,7 +82,14 @@ class CategoriesController extends Controller
 
         $id = (int) $request->id;
         $category = Categories::findOrFail($id);
-        $category->update(['deleted_at' => Carbon::now()]);
+
+        if (!$category) {
+            return redirect()->route('admin.categories')->withErrors(['Category not found.']);
+        }
+
+        $category->update([
+            'deleted_at' => Carbon::now(),
+        ]);
 
         Logs::create([
             'category_id'=>$id,
