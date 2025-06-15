@@ -30,8 +30,7 @@
 				@foreach ($logs as $log)
 					@if($log->product_id != null)
 						@include('partials.products_log', ['log' => $log])
-					@endif
-					@if($log->category_id != null)
+					@elseif($log->category_id != null)
 						@include('partials.categories_log', ['log' => $log])
 					@endif
 				@endforeach

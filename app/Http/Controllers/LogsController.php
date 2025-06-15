@@ -13,8 +13,7 @@ class LogsController extends Controller
     public function getAllLogs(Request $request)
     {
         $query = Logs::query();
-        // $logs = Logs::orderBy("created_at","desc")->paginate(10);
-        $logs = $query->paginate(10);
+        $logs = $query->orderBy("created_at", "desc")->get();
         $products= Products::all();
 
         $user = Auth::user()->role;

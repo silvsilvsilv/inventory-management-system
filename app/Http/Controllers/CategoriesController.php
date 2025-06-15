@@ -48,6 +48,14 @@ class CategoriesController extends Controller
             'updated_at' => Carbon::now(),
         ]);
 
+        Logs::create([
+            'category_id'=>$id,
+            'user_id'=> Auth::user()->id,
+            'type'=>'update',
+            'created_at'=>Carbon::now(),
+            'updated_at'=> Carbon::now(),
+        ]);
+
         return redirect()->route('admin.categories')->with('success', 'Category updated successfully.');
     }
 
@@ -70,7 +78,6 @@ class CategoriesController extends Controller
             'created_at'=>Carbon::now(),
             'updated_at'=> Carbon::now(),
         ]);
-
 
         return redirect()->route('admin.categories')->with('success', 'Category created successfully.');
     }
