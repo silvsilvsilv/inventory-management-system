@@ -117,7 +117,9 @@
                 <select name="category_id" class="border p-2 rounded" required name="category_id">
                     <option value="" disabled>Select Category</option>
                     @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @if($category->deleted_at == null) 
+                            <option value="{{ $category->id }}" class="capitalize">{{ $category->name }}</option>                        
+                        @endif
                     @endforeach
                 </select>
                 <input type="number" placeholder="Price" class="border p-2 rounded" required name="price" />
@@ -147,7 +149,9 @@
                     name="category_id">
                     <option value="" disabled>Select Category</option>
                     @foreach($categories as $category)
-                        <option value="{{ $category->id }}" class="capitalize">{{ $category->name }}</option>
+                        @if($category->deleted_at == null) 
+                            <option value="{{ $category->id }}" class="capitalize">{{ $category->name }}</option>                        
+                        @endif
                     @endforeach
                 </select>
                 <input type="hidden" id="editProductPrice" placeholder="Price" class="border p-2 rounded" required
