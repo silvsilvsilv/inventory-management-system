@@ -74,7 +74,7 @@
                 </thead>
                 <tbody class="divide-y divide-gray-200">
                     @foreach($products as $product)
-                        @if($product->deleted_at === null)
+                        @if($product->deleted_at === null && $product->category->deleted_at === null)
                             <tr class="hover:bg-gray-50 transition">
                                 <td class="px-4 py-2">{{ $product->name }}</td>
                                 <td class="px-4 py-2">{{ $product->category->name ?? 'N/A' }}</td>
