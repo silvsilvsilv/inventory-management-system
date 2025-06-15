@@ -30,9 +30,11 @@
                         class="w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
                         <option value="">All Categories</option>
                         @foreach($categories as $category)
-                            <option value="{{ $category->name }}" {{ request('category') == $category->name ? 'selected' : '' }}>
-                                {{ $category->name }}
-                            </option>
+                            @if($category->deleted_at === null)                                    
+                                <option value="{{ $category->name }}" {{ request('category') == $category->name ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
+                            @endif
                         @endforeach
                     </select>
                     <input type="text" name="filter" placeholder="Search by name"
